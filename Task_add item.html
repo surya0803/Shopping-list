@@ -73,18 +73,21 @@
           
           function popelement(){
           	const x = document.getElementById("dproduct").value;
-            if(arr[arr.length-1]!=x){
+            var b = false;
                 for(let i=0;i<arr.length;i++){
                     if(arr[i] == x){
+                    b = true;
                     const temp = arr[i];
                     arr[i]=arr[arr.length-1];
                     arr[arr.length-1]=temp;
                     break;
                     }
                 }
+            if(b == true){
+                i--;
+                arr.pop();
+                b=false;
             }
-            i--;
-            arr.pop();
           }
 
         </script>
