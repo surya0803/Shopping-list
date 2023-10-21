@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            input[type="text"]{
+                font-size: 1.5vw;
+            }
+            button[type="button"]{
+                font-size: 1.5vw;
+            }
+            #items{
+                display: flex;
+                flex-flow: row wrap;
+            }
+            button, input{
+                height: auto;
+                width: auto;
+            }
+            p{
+                font-size: 1.7vw;
+                color: white;
+                background-color: blue;
+                width: auto;
+                padding: 10px;
+                height: auto;
+                margin: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <form>
+        <input type="text" id="product" placeholder="Enter the item"><br><br>
+        <button type="button" id="addbtn" onclick="add_itm()"> Add item</button><br><br>
+        <input type="text" id="dproduct" placeholder="Enter the item"><br><br>
+        <button type="button" id="deletebtn" onclick="delete_itm()"> Remove item</button><br><br>
+        </form>
+        <div id="items"></div>
+        <script>
+            var arr=[];
+            let i=0;
+            function add_itm(){
+                let x=document.getElementById("product").value;
+                arr.push(x);
+            while(i<arr.length){
+               const para= document.createElement("p");
+               para.innerHTML = arr[i];
+               document.getElementById("items").appendChild(para);
+               i++;
+            }
+          }
+          
+
+          function delete_itm(){
+          	removeall();
+            popelement();
+            reprint();
+          }
+
+          function reprint(){
+            for(let i=0;i<arr.length;i++){
+                const para= document.createElement("p");
+                para.innerHTML = arr[i];
+                document.getElementById("items").appendChild(para);
+            }
+          }
+          function removeall(){
+          const divid=document.getElementById("items");
+          for(let i=0;i<arr.length;i++){
+            divid.removeChild(divid.firstElementChild);
+          }
+          }
+          
+          function popelement(){
+          	const x = document.getElementById("dproduct").value;
+            if(arr[arr.length-1]!=x){
+                for(let i=0;i<arr.length;i++){
+                    if(arr[i] == x){
+                    const temp = arr[i];
+                    arr[i]=arr[arr.length-1];
+                    arr[arr.length-1]=temp;
+                    break;
+                    }
+                }
+            }
+            i--;
+            arr.pop();
+          }
+
+        </script>
+    </body>
+</html>
